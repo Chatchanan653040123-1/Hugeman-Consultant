@@ -21,7 +21,7 @@ import (
 // @description This is a sample server for Backend Test API.
 // @BasePath /api
 // @schemes http https
-// @host localhost:5000
+// @host localhost:8080
 // @version v1
 func main() {
 	initConfig()
