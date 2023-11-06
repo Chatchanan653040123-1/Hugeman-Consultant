@@ -84,13 +84,3 @@ func (h backendTestsHandler) UpdateATask(c *gin.Context) {
 
 	c.JSON(http.StatusOK, response)
 }
-
-func (h backendTestsHandler) GetAllOfTasks(c *gin.Context) {
-	response, err := h.backendTestsService.GetAllOfTasks()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve tasks"})
-		return
-	}
-
-	c.JSON(http.StatusOK, response)
-}

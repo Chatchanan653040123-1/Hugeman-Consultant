@@ -31,5 +31,4 @@ type BackendTestsService interface {
 	ShowSortData(SortRequest) ([]Response, error)
 	ShowSearchData(SearchRequest) ([]Response, error)
 	UpdateATask(Request, uuid.UUID) (*Response, error)
-	GetAllOfTasks() ([]Response, error)
 }

@@ -167,24 +167,3 @@ func (s backendTestsService) UpdateATask(req Request, id uuid.UUID) (*Response, 
 	}
 	return &taskResponse, nil
 }
-
-// Extra
-func (s backendTestsService) GetAllOfTasks() ([]Response, error) {
-	tasks, err := s.backendTestsRepo.GetAllOfTasks()
-	if err != nil {
-		return nil, err
-	}
-	var tasksResponse []Response
-	for _, task := range tasks {
-		taskResponse := Response{
-			ID:          task.ID,
-			Title:       task.Title,
-			Description: task.Description,
-			CreatedAt:   task.CreatedAt,
-			Image:       task.Image,
-			Status:      task.Status,
-		}
-		tasksResponse = append(tasksResponse, taskResponse)
-	}
-	return tasksResponse, nil
-}
