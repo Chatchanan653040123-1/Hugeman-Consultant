@@ -50,7 +50,7 @@ func main() {
 }
 
 func initConfig() {
-	err := godotenv.Load("config.env")
+	err := godotenv.Load("config/config.env")
 	if err != nil {
 		logs.Error("Error loading .env file")
 	}
