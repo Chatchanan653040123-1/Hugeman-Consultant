@@ -15,14 +15,14 @@
 | Image | String |  |
 | Status | String  | Accept: `IN_PROGRESS` \| `COMPLETED` |
 
-- The TODO application can `CREATE` a task with the following requirements
+- The TODO application can `CREATE` a task with the following requirements✔️
     - The `ID`, `Title`,`Date`, and `Status` fields must be required ✔️
     - The `ID` field must be `UUID` format ✔️
     - The `Title` field must not over `100 characters` ✔️
     - The `Date` field must be `RFC3399 with Timezone` format ✔️
     - The `Status` field must accept only `IN_PROGRESS` or `COMPLETE` status ✔️
     - The `Image` field must be `Based64 Encode` format ✔️
-- The TODO application can show the `LIST` of tasks with the following requirements
+- The TODO application can show the `LIST` of tasks with the following requirements✔️
     - Can sort the data by `Title` or `Date` or `Status` fields ✔️
     - Can search the data by `Title` or `Description` fields ✔️
 - The TODO application can `UPDATE` a task with the following requirements ✔️
@@ -31,7 +31,7 @@
 
 ## Application Specs for API
 
-- **Must have**
+- **Must have**✔️
     - You can use any API frameworks ✔️
         - It would be great if you developed by `GoLang` with `GinGonic` framework ✔️
     - `Read` and `Write` the data from `JSON` file ✔️
