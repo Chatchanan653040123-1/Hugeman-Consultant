@@ -3,9 +3,9 @@
 - I used Hexagonal Architecture
 - Unit test cover rate = 89.5%
 - In the section that says "`Read` and `Write` the data from `JSON` file", am I understanding correctly that the data should be stored in a JSON file instead of a Database?
+# ---------------------------------------------------------------
 ## Definition of Done
 - The data must consist of the following fields
-# ---------------------------------------------------------------
 | Field  | Data Type | Notes |
 | ------ | --------- | ----- |
 | ID | UUID |  |
