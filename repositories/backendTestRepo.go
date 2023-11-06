@@ -14,3 +14,8 @@ type BackendTests struct {
 	Image       string    `json:"Image"`
 	Status      string    `json:"Status"`
 }
+type BackendTestsRepository interface {
+	CreateATask(BackendTests) (*BackendTests, error)
+	UpdateATask(BackendTests, uuid.UUID) (*BackendTests, error)
+	GetAllOfTasks() ([]BackendTests, error)
+}
