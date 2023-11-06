@@ -1,0 +1,146 @@
+basePath: /api
+definitions:
+  services.Request:
+    properties:
+      Description:
+        type: string
+      Image:
+        type: string
+      Status:
+        type: string
+      Title:
+        type: string
+    type: object
+  services.Response:
+    properties:
+      Created At Date Time:
+        type: string
+      Description:
+        type: string
+      ID:
+        type: string
+      Image:
+        type: string
+      Status:
+        type: string
+      Title:
+        type: string
+    type: object
+  services.SearchRequest:
+    properties:
+      SearchKeyWord:
+        type: string
+    type: object
+  services.SortRequest:
+    properties:
+      SortBy:
+        type: string
+    type: object
+host: localhost:5000
+info:
+  contact: {}
+  description: This is a sample server for Backend Test API.
+  title: Backend Test(Golang) API
+  version: v1
+paths:
+  /create:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        ID, Title,Date, and Status fields must be required
+        The Title field must not over 100 characters
+        The Status field must accept only IN_PROGRESS or COMPLETE status
+      parameters:
+      - description: Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/services.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Response'
+      summary: Create a task
+      tags:
+      - Task
+  /showSearchData:
+    post:
+      consumes:
+      - application/json
+      description: To search the data by Title or Description fields
+      parameters:
+      - description: SearchRequest
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/services.SearchRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Response'
+      summary: Show searched data
+      tags:
+      - Task
+  /showSortData:
+    post:
+      consumes:
+      - application/json
+      description: To sort the data by Title or Date or Status fields
+      parameters:
+      - description: SortRequest
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/services.SortRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Response'
+      summary: Show sorted data
+      tags:
+      - Task
+  /update/{id}:
+    post:
+      consumes:
+      - application/json
+      description: To update Title, Description, Date, Image, and Status fields corresponding
+        to the requirements from the CREATE feature
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Request
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/services.Request'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Response'
+      summary: Update a task
+      tags:
+      - Task
+schemes:
+- http
+- https
+swagger: "2.0"

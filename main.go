@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"strings"
+	_ "testBackend/docs"
 	"testBackend/handlers"
 	"testBackend/logs"
 	"testBackend/repositories"
@@ -12,8 +13,16 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/spf13/viper"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
+// @title Backend Test(Golang) API
+// @description This is a sample server for Backend Test API.
+// @BasePath /api
+// @schemes http https
+// @host localhost:5000
+// @version v1
 func main() {
 	initConfig()
 	backendTestsRepo := repositories.NewBackendTestsRepo(viper.GetString("FILE_PATH"))
@@ -30,7 +39,8 @@ func main() {
 		"X-CSRF-Token", "Authorization", "X-Max",
 	}
 	router.Use(cors.New(config))
-
+	//swagger
+	router.GET("docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.POST("/api/create", backendTestsHandler.CreateATask)
 	router.POST("/api/showSortData", backendTestsHandler.ShowSortData)
 	router.POST("/api/showSearchData", backendTestsHandler.ShowSearchData)
