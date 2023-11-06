@@ -4,8 +4,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"os"
+	"testBackend/logs"
 
 	"github.com/google/uuid"
+	"go.uber.org/zap"
 )
 
 type backendTestsRepo struct {
@@ -21,6 +23,7 @@ func (r *backendTestsRepo) CreateATask(createATask BackendTests) (*BackendTests,
 
 	data, err := ioutil.ReadFile(r.FilePath)
 	if err != nil && !os.IsNotExist(err) {
+		logs.Error("Error while reading data from the file", zap.Error(err))
 		return nil, err
 	}
 
@@ -29,6 +32,7 @@ func (r *backendTestsRepo) CreateATask(createATask BackendTests) (*BackendTests,
 	} else {
 		err = json.Unmarshal(data, &existingData)
 		if err != nil {
+			logs.Error("Error while unmarshalling data from the file", zap.Error(err))
 			return nil, err
 		}
 	}
@@ -36,21 +40,26 @@ func (r *backendTestsRepo) CreateATask(createATask BackendTests) (*BackendTests,
 	existingData = append(existingData, createATask)
 	newData, err := json.Marshal(existingData)
 	if err != nil {
+		logs.Error("Error while marshalling data", zap.Error(err))
 		return nil, err
 	}
 
 	err = ioutil.WriteFile(r.FilePath, newData, 0644)
 	if err != nil {
+		logs.Error("Error while writing data to the file", zap.Error(err))
 		return nil, err
 	}
 
+	logs.Info("Task created successfully")
 	return &createATask, nil
 }
+
 func (r *backendTestsRepo) UpdateATask(updateATask BackendTests, id uuid.UUID) (*BackendTests, error) {
 	var existingData []BackendTests
 
 	data, err := ioutil.ReadFile(r.FilePath)
 	if err != nil && !os.IsNotExist(err) {
+		logs.Error("Error while reading data from the file", zap.Error(err))
 		return nil, err
 	}
 
@@ -59,6 +68,7 @@ func (r *backendTestsRepo) UpdateATask(updateATask BackendTests, id uuid.UUID) (
 	} else {
 		err = json.Unmarshal(data, &existingData)
 		if err != nil {
+			logs.Error("Error while unmarshalling data from the file", zap.Error(err))
 			return nil, err
 		}
 	}
@@ -71,21 +81,26 @@ func (r *backendTestsRepo) UpdateATask(updateATask BackendTests, id uuid.UUID) (
 
 	newData, err := json.Marshal(existingData)
 	if err != nil {
+		logs.Error("Error while marshalling data", zap.Error(err))
 		return nil, err
 	}
 
 	err = ioutil.WriteFile(r.FilePath, newData, 0644)
 	if err != nil {
+		logs.Error("Error while writing data to the file", zap.Error(err))
 		return nil, err
 	}
 
+	logs.Info("Task updated successfully")
 	return &updateATask, nil
 }
+
 func (r *backendTestsRepo) GetAllOfTasks() ([]BackendTests, error) {
 	var existingData []BackendTests
 
 	data, err := ioutil.ReadFile(r.FilePath)
 	if err != nil && !os.IsNotExist(err) {
+		logs.Error("Error while reading data from the file", zap.Error(err))
 		return nil, err
 	}
 
@@ -94,9 +109,11 @@ func (r *backendTestsRepo) GetAllOfTasks() ([]BackendTests, error) {
 	} else {
 		err = json.Unmarshal(data, &existingData)
 		if err != nil {
+			logs.Error("Error while unmarshalling data from the file", zap.Error(err))
 			return nil, err
 		}
 	}
 
+	logs.Info("Retrieved all tasks successfully")
 	return existingData, nil
 }
