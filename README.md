@@ -3,6 +3,7 @@
 - I used Hexagonal Architecture
 - Unit test cover rate = 89.5%
 - In the section that says "`Read` and `Write` the data from `JSON` file", am I understanding correctly that the data should be stored in a JSON file instead of a Database?
+- search the data by `Title` or `Description` fields, am I understanding correctly that this function is to Search by word then filter all of contain Title or Description?, or I need to search by type "Title" or "Description"
 ---------------------------------------------------------------
 ## Definition of Done
 - The data must consist of the following fields
