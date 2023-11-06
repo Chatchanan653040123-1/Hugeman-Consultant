@@ -3,9 +3,10 @@
 - I used Hexagonal Architecture
 - Unit test cover rate = 89.5%
 - In the section that says "`Read` and `Write` the data from `JSON` file", am I understanding correctly that the data should be stored in a JSON file instead of a Database?
-# ---------------------------------------------------------------
-# Definition of Done
+---------------------------------------------------------------
+## Definition of Done
 - The data must consist of the following fields
+
 | Field  | Data Type | Notes |
 | ------ | --------- | ----- |
 | ID | UUID |  |
@@ -29,7 +30,7 @@
     - Can update a task by `ID` field ✔️
     - Can update `Title`, `Description`, `Date`, `Image`, and `Status` fields corresponding to the requirements from the `CREATE` feature ✔️
 
-# Application Specs for API
+## Application Specs for API
 
 - **Must have**✔️
     - You can use any API frameworks ✔️
